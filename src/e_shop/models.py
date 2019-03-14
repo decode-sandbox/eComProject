@@ -12,7 +12,7 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     price = models.PositiveIntegerField()
-    image_link = models.ImageField()
+    image_link = models.ImageField(upload_to="e_shop/uploads")
     users = models.ManyToManyField(User, through='Purchase', 
                                       related_name='products_commanded')
     
