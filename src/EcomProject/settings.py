@@ -119,3 +119,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Media files (uploadeds, ...)
+MEDIA_URL = '/'
+
+MEDIA_ROOT = '/home/yannick/projects/django_projects/EcomProject/src/'
