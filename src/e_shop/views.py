@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from e_shop.models import Product
+
 # Here are our views.
 
 def home(request):
@@ -14,3 +15,12 @@ def product(request):
 
 def cart(request):
     return render(request,'e_shop/cart.html')
+
+def contact(request):
+    return render(request,'e_shop/contact.html')
+
+
+def about(request):
+    return render(request, 'e_shop/about.html')
+
+
