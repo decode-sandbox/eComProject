@@ -1,31 +1,63 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    {% block title %}<title>Shop paginated page!!</title>{% endblock %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!-- Add additional CSS in static file -->
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Home | E-shop</title>
+    <!--https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css-->
+    <link rel="stylesheet" href="{% static 'e_shop/bulma.min.css' %}">
+    <link rel="stylesheet" href="{% static 'e_shop/shop.css' %}" />
+    <link rel="icon" href="{% static 'e_shop/e-commerce.png' %}">
+    <!--https://use.fontawesome.com/releases/v5.3.1/js/all.js-->
+    <script defer src="{% static 'e_shop/fontawesome.all.js' %}"></script>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-2">
-                {% block sidebar %}
-                <ul class="sidebar-nav">
-                    <li><a href="{% url 'index' %}">Home</a></li>
-                    <li><a href="">All Products</a></li>
-                </ul>
-                {% endblock %}
+    <header>
+        <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="#s1" class="navbar-item">Home</a>
+                    <a href="#about" class="navbar-item">About</a>
+                    <a href="#products" class="navbar-item">Products</a>
+                    <a href="#contact-us" class="navbar-item">Contact us</a>
+                </div>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-link">
+                                <strong>Sign up</strong>
+                            </a>
+                            <a class="button is-light">
+                                Log in
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-10 ">{% block content %}{% endblock %}</div>
-        </div>
+        </nav>
+    </header>
+    <div id="products" class="columns">
+        {% for product in products %}
+        <section class="column section">
+            <p class="title">{{product.name}}</p>
+            <img src="{% static 'e_shop/coca_cola.jpeg' %}" alt="{{product.name}}" />
+            <ul>
+                <li><strong>Description</strong>:{{product.description}}</li>
+                <li><strong>Price</strong>: {{product.price}} FCFA</li>
+            </ul>
+        </section>
+        {% endfor %}
     </div>
+    <footer id="contact-us" class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>E-commerce shop</strong> by <a href="#">TeamDelta</a>.
+            </p>
+        </div>
+    </footer>
 </body>
 
 </html>
