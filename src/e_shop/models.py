@@ -13,7 +13,6 @@ class Product(models.Model):
     description = models.TextField()
     price = models.PositiveIntegerField()
     image_link = models.ImageField(upload_to="e_shop/uploads")
-    stock = models.PositiveIntegerField()
     users = models.ManyToManyField(User, through='Purchase', 
                                       related_name='products_commanded')
     
