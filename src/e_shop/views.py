@@ -11,7 +11,12 @@ def shop(request):
     return render(request,'e_shop/shop.html')
 
 def product(request):
-    return render(request,'e_shop/product.html')
+    pr = Product.objects.all()
+    paginator = Paginator(pr, 25)
+
+    page = request.GET.get('page')
+    products = paginator.get_page(page)
+    return render(request, 'e_shop/product.html', {'products': products})
 
 def cart(request):
     return render(request,'e_shop/cart.html')

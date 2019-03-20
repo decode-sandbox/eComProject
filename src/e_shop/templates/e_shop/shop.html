@@ -14,6 +14,7 @@
     <script defer src="{% static 'e_shop/fontawesome.all.js' %}"></script>
 </head>
 
+
 <body>
     <header>
         <nav class="navbar is-light" role="navigation" aria-label="main navigation">
@@ -39,18 +40,31 @@
             </div>
         </nav>
     </header>
-    <div id="products" class="columns">
-        {% for product in products %}
-        <section class="column section">
-            <p class="title">{{product.name}}</p>
-            <img src="{% static 'e_shop/coca_cola.jpeg' %}" alt="{{product.name}}" />
-            <ul>
-                <li><strong>Description</strong>:{{product.description}}</li>
-                <li><strong>Price</strong>: {{product.price}} FCFA</li>
-            </ul>
-        </section>
-        {% endfor %}
+
+
+    <div>
+        
+
+
+
+
     </div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <footer id="contact-us" class="footer">
         <div class="content has-text-centered">
             <p>
