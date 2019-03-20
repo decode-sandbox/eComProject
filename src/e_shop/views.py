@@ -1,9 +1,6 @@
 from django.shortcuts import render
 from e_shop.models import Product
-<<<<<<< HEAD
 
-=======
->>>>>>> bf6b9ee4cb6fb9adfbb22d430b5a9369792e8dd1
 # Here are our views.
 
 def home(request):
