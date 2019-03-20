@@ -13,18 +13,12 @@ class Product(models.Model):
     description = models.TextField()
     price = models.PositiveIntegerField()
     image_link = models.ImageField(upload_to="e_shop/uploads")
+    quantity = models.PositiveIntegerField()
     users = models.ManyToManyField(User, through='Purchase', 
                                       related_name='products_commanded')
     
     def __str__(self):
         return self.name
-    
-class Stock(models.Model):
-    quantity = models.PositiveIntegerField()
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return f"{self.quantity} {self.product}"
     
 class Purchase(models.Model):
     quantity = models.PositiveIntegerField()
