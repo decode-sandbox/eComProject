@@ -8,7 +8,10 @@ def home(request):
     return render(request,'e_shop/home.html',{'products':p})
 
 def shop(request):
-    return render(request,'e_shop/shop.html')
+    pr = Product.objects.all()
+    context = {'products': pr}
+    template = 'e_shop/shop.html'
+    return render(request,template,context)
 
 def product(request):
     return render(request,'e_shop/product.html')
@@ -18,7 +21,6 @@ def cart(request):
 
 def contact(request):
     return render(request,'e_shop/contact.html')
-
 
 def about(request):
     return render(request, 'e_shop/about.html')

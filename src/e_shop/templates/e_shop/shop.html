@@ -1,11 +1,12 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home | E-shop</title>
+    <title>All Products | E-shop</title>
     <!--https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css-->
     <link rel="stylesheet" href="{% static 'e_shop/bulma.min.css' %}">
     <link rel="stylesheet" href="{% static 'e_shop/shop.css' %}" />
@@ -14,43 +15,68 @@
     <script defer src="{% static 'e_shop/fontawesome.all.js' %}"></script>
 </head>
 
+
+
 <body>
     <header>
         <nav class="navbar is-light" role="navigation" aria-label="main navigation">
             <div class="navbar-menu">
                 <div class="navbar-start">
                     <a href="home" class="navbar-item">Home</a>
-                    <a href="about" class="navbar-item">About</a>
+                    <a href="#about" class="navbar-item">About</a>
                     <a href="shop" class="navbar-item">Products</a>
-                    <a href="contact" class="navbar-item">Contact us</a>
+                    <a href="#contact" class="navbar-item">Contact us</a>
+                </div>
+                <div class="navbar-item">
+                    
                 </div>
                 <div class="navbar-end">
-                    <div class="navbar-item">
-                        <div class="buttons">
-                            <a class="button is-link">
-                                <strong>Sign up</strong>
-                            </a>
-                            <a class="button is-light">
-                                Log in
-                            </a>
-                        </div>
-                    </div>
+                    <a href="#Account" class="navbar-item"> Account <i class="fas fa-user-circle"></i></a>
+                    <a href="#cart" class="navbar-item"> <i class="fas fa-shopping-cart"></i></a>
                 </div>
+            </div>
             </div>
         </nav>
     </header>
-    <div id="products" class="columns">
-        {% for product in products %}
-        <section class="column section">
-            <p class="title">{{product.name}}</p>
-            <img src="{% static 'e_shop/coca_cola.jpeg' %}" alt="{{product.name}}" />
-            <ul>
-                <li><strong>Description</strong>:{{product.description}}</li>
-                <li><strong>Price</strong>: {{product.price}} FCFA</li>
-            </ul>
-        </section>
-        {% endfor %}
+    <div class="field">
+        <div class="control">
+        <input class="input is-rounded" type="text"  id="search" placeholder="Search">
+        <a class="button is-black is-rounded">Search</a>
+        </div>
+      </div>
     </div>
+    <hr>
+    <div>
+        <table class="table table-hover">
+            {% for product in products %}
+            <td>
+                <section class="column section">
+                    <p class="title">{{product.name}}</p>
+                    <img src="{{product.image_link.url}}" alt="{{product.name}}" />
+                    <ul>
+                        <li><strong>Description</strong>:{{product.description}}</li>
+                        <li><strong>Price</strong>: {{product.price}} FCFA</li>
+                    </ul>
+                </section>
+            </td>
+            {% endfor %}
+        </table>
+    </div>
+
+    <hr>
+    <div>
+        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+            <a class="pagination-previous">Previous</a>
+            <a class="pagination-next">Next page</a>
+            <ul class="pagination-list">
+                <li><a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a></li>
+                <li><a class="pagination-link" aria-label="Goto page 2">2</a></li>
+                <li><a class="pagination-link" aria-label="Goto page 3">3</a></li>
+            </ul>
+        </nav>
+    </div>
+    <hr>
+
     <footer id="contact-us" class="footer">
         <div class="content has-text-centered">
             <p>
