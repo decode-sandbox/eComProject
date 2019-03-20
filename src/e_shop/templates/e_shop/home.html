@@ -1,2 +1,97 @@
-<h2>Home page!!</h2>
-<p>On this page, we have the pictures of some products and their features.</p>
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home | E-shop</title>
+    <!--https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css-->
+    <link rel="stylesheet" href="{% static 'e_shop/bulma.min.css' %}">
+    <link rel="stylesheet" href="{% static 'e_shop/home.css' %}"/>
+    <link rel="icon" href="{% static 'e_shop/e-commerce.png' %}">
+    <!--https://use.fontawesome.com/releases/v5.3.1/js/all.js-->
+    <script defer src="{% static 'e_shop/fontawesome.all.js' %}"></script>
+  </head>
+  <body>
+    <header>
+<<<<<<< HEAD
+=======
+      <img src="{% static 'e_shop/e-commerce.png' %}" alt="e-commerce" 
+      width="70" height="70">
+>>>>>>> bf6b9ee4cb6fb9adfbb22d430b5a9369792e8dd1
+      <nav class="navbar is-light" role="navigation" 
+      aria-label="main navigation">
+        <div class="navbar-menu">
+          <div class="navbar-start">
+<<<<<<< HEAD
+            <a href="home" class="navbar-item">Home</a>
+            <a href="#about" class="navbar-item">About</a>
+            <a href="shop" class="navbar-item">Products</a>
+            <a href="contact" class="navbar-item">Contact us</a>
+=======
+            <a href="#s1" class="navbar-item">Home</a>
+            <a href="#about" class="navbar-item">About</a>
+            <a href="#products" class="navbar-item">Products</a>
+            <a href="#contact-us" class="navbar-item">Contact us</a>
+>>>>>>> bf6b9ee4cb6fb9adfbb22d430b5a9369792e8dd1
+          </div>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-link">
+                  <strong>Sign up</strong>
+                </a>
+                <a class="button is-light">
+                  Log in
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section id="s1" class="section">
+      <h1 id="welcome-text" class="title">My e-commerce shop</h1>
+    </section>
+    <hr>
+    <section id="about" class="section">
+      <h1 class="title">Description du site</h1>
+      <p>Dummy text... Le Lorem Ipsum est simplement du faux texte employé 
+      dans la composition et la mise en page avant impression. Le Lorem Ipsum
+       est le faux texte standard de l'imprimerie depuis les années 1500, 
+       quand un imprimeur anonyme assembla ensemble des morceaux de texte 
+       pour réaliser un livre spécimen de polices de texte. Il n'a pas fait 
+       que survivre cinq siècles, mais s'est aussi adapté à la bureautique 
+       informatique, sans que son contenu n'en soit modifié. Il a été 
+       popularisé dans les années 1960 grâce à la vente de feuilles Letraset 
+       contenant des passages du Lorem Ipsum, et, plus récemment, par son 
+       inclusion dans des applications de mise en page de texte, comme Aldus 
+       PageMaker.</p>
+    </section>
+    <hr>
+    <div id="products" class="columns">
+        {% for product in products %}
+            <section class="column section">
+                <p class="title">{{product.name}}</p>
+<<<<<<< HEAD
+                <img src="{% static 'e_shop/coca_cola.jpeg' %}" 
+                alt="{{product.name}}"/>
+=======
+                <img src="{{product.image_link.url}}" alt="{{product.name}}"/>
+>>>>>>> bf6b9ee4cb6fb9adfbb22d430b5a9369792e8dd1
+                <ul>
+                  <li><strong>Description</strong>:{{product.description}}</li>
+                  <li><strong>Price</strong>: {{product.price}} FCFA</li> 
+                </ul>
+              </section>
+        {% endfor %}
+    </div>
+    <footer id="contact-us" class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>E-commerce shop</strong> by <a href="#">TeamDelta</a>.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
