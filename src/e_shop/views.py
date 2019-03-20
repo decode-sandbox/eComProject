@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from e_shop.models import Product
 
+
 # Here are our views.
 
 def home(request):
@@ -8,15 +9,13 @@ def home(request):
     return render(request,'e_shop/home.html',{'products':p})
 
 def shop(request):
-    return render(request,'e_shop/shop.html')
+    pro = Product.objects.all() #Take all Product
+    template = 'e_shop/shop.html'
+    context = {'products': pro}
+    return render(request,template,context) 
 
 def product(request):
-    pr = Product.objects.all()
-    paginator = Paginator(pr, 25)
-
-    page = request.GET.get('page')
-    products = paginator.get_page(page)
-    return render(request, 'e_shop/product.html', {'products': products})
+    return render(request, 'e_shop/product.html')
 
 def cart(request):
     return render(request,'e_shop/cart.html')
