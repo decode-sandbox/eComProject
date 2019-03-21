@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>All Products | E-shop</title>
+    <!--https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css-->
+    <link rel="stylesheet" href="{% static 'e_shop/bulma.min.css' %}">
+    <link rel="stylesheet" href="{% static 'e_shop/contact.css' %}" />
+    <link rel="icon" href="{% static 'e_shop/e-commerce.png' %}">
+    <!--https://use.fontawesome.com/releases/v5.3.1/js/all.js-->
+    <script defer src="{% static 'e_shop/fontawesome.all.js' %}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Display the navigation bar-->
+    <header>
+        <img src="{% static 'e_shop/e-commerce.png' %}" alt="e-commerce" width="70" height="70">
+        <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="home" class="navbar-item">Home</a>
+                    <a href="#about" class="navbar-item">About</a>
+                    <a href="shop" class="navbar-item">Products</a>
+                    <a href="contact" class="navbar-item">Contact Us</a>
+                </div>
+                <div class="navbar-item">
+
+                </div>
+                <div class="navbar-end">
+                    <a href="#Account" class="navbar-item "> Account <i class="fas fa-user-circle"></i></a>
+                    <a href="#cart" class="navbar-item"> <i class="fas fa-shopping-cart"></i></a>
+                </div>
+            </div>
+            </div>
+        </nav>
+    </header>
+
+    <hr>
+    
+    <!-- Display the contact us form-->
+    <p style="text-align:center"> Contact Us </p>
+    <form name="order" method="post" id="order"  style="text-align:center;">
+        Enter your first name: <input type="text" name="fname" id="fname"><br><br>
+        Enter your last name: <input type="text" name="lname" id="lname"><br><br>
+        Enter your email: <input type="email" name="email" id="email"><br><br>
+        Comments:<br>
+        <textarea name="comments" id="comments" rows="4" cols="40"></textarea><br><br>
+        <input type="submit" name="sub" id="sub" value="Submit">
+    </form>
+
+    <hr>
+        <footer id="contact-us" class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>E-commerce shop</strong> by <a href="#">TeamDelta</a>.
+                </p>
+            </div>
+        </footer>
+</body>
+
+</html>
