@@ -63,10 +63,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request'
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'EcomProject.wsgi.application'
 
@@ -123,4 +125,5 @@ STATIC_URL = '/static/'
 # Media files (uploadeds, ...)
 MEDIA_URL = '/'
 
-MEDIA_ROOT = '/home/yannick/projects/django_projects/EcomProject/src/'
+MEDIA_ROOT = '/Users/domihozannou/Dropbox/EcomProject/EcomProject/src'
+#MEDIA_ROOT = '/home/yannick/projects/django_projects/EcomProject/src'
