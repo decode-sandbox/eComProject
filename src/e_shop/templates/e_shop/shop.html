@@ -25,6 +25,8 @@
 
 <body>
     <header>
+       <img src="{% static 'e_shop/e-commerce.png' %}" alt="e-commerce"
+        width="70" height="70">
         <nav class="navbar is-light" role="navigation" aria-label="main navigation">
             <div class="navbar-menu">
                 <div class="navbar-start">
@@ -37,7 +39,7 @@
                     
                 </div>
                 <div class="navbar-end">
-                    <a href="#Account" class="navbar-item"> Account <i class="fas fa-user-circle"></i></a>
+                    <a href="#Account" class="navbar-item "> Account <i class="fas fa-user-circle"></i></a>
                     <a href="#cart" class="navbar-item"> <i class="fas fa-shopping-cart"></i></a>
                 </div>
             </div>
@@ -56,11 +58,14 @@
 
     <div>
         <table>
-            {% for product in products %}
+            {% for product in all_product %}
             <tr>
                 <td><section class="column section">
                     <p class="title">{{product.name}}</p>
+                    <figure class="image is-128x128">
                     <img src="{{product.image_link.url}}" alt="{{product.name}}" />
+                    </figure>
+                    <br>
                     <ul>
                         <li><strong>Description</strong>:{{product.description}}</li>
                         <li><strong>Price</strong>: {{product.price}} FCFA</li>
@@ -74,16 +79,18 @@
             <div>
                 <div class="pagination">
                     <span class="step-links">
-                        {% if product.has_previous %}
-                        <a href="?page={{ product.previous_page_number }}">previous</a>
+                        {% if all_product.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ all_product.previous_page_number }}">previous</a>
                         {% endif %}
             
                         <span class="current">
-                            Page {{ product.number }} of {{ product.paginator.num_pages }}.
+                            Page {{ all_product.number }} of {{ all_product.paginator.num_pages }}.
                         </span>
             
                         {% if product.has_next %}
-                        <a href="?page={{ product.paginator.num_pages }}">last &raquo;</a>
+                        <a href="?page={{ all_product.next_page_number }}">next</a>
+                        <a href="?page={{ all_product.paginator.num_pages }}">last &raquo;</a>
                         {% endif %}
                     </span>
                 </div>

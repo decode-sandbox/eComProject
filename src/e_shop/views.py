@@ -10,11 +10,11 @@ def home(request):
 
 def shop(request):
     pro = Product.objects.all()
-    paginator = Paginator(pro, 2)  # Show 2 contacts per page
+    paginator = Paginator(pro,6)  # Show 6 products per page
     page = request.GET.get('page')
-    context = {'products': pro}
+    all_product = paginator.get_page(page)
+    context = {'all_product': pro}
     template = 'e_shop/shop.html'
-    products = paginator.get_page(page)
     return render(request,template,context)
 
 
