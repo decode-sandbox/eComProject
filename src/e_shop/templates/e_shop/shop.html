@@ -13,6 +13,12 @@
     <link rel="icon" href="{% static 'e_shop/e-commerce.png' %}">
     <!--https://use.fontawesome.com/releases/v5.3.1/js/all.js-->
     <script defer src="{% static 'e_shop/fontawesome.all.js' %}"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </head>
 
 
@@ -38,31 +44,53 @@
             </div>
         </nav>
     </header>
-    <div class="field">
-        <div class="control">
-        <input class="input is-rounded" type="text"  id="search" placeholder="Search">
-        <a class="button is-black is-rounded">Search</a>
+  
+    <div class="box has-text-centered">
+        <div class="field">
+            <div class="control has-icons-right" style="text-align: center;">
+                <input class="input is-rounded" style="width:18em;" type="text" placeholder="Search">
+                <button class="button">Search</button>
+            </div>
         </div>
-      </div>
-    </div>
-    <hr>
+
+
     <div>
-        <table class="table table-hover">
+        <table>
             {% for product in products %}
-            <td>
-                <section class="column section">
+            <tr>
+                <td><section class="column section">
                     <p class="title">{{product.name}}</p>
                     <img src="{{product.image_link.url}}" alt="{{product.name}}" />
                     <ul>
                         <li><strong>Description</strong>:{{product.description}}</li>
                         <li><strong>Price</strong>: {{product.price}} FCFA</li>
+                        <li><strong>Stock</strong>: {{product.quantity}}</li>
                     </ul>
                 </section>
             </td>
+            </tr>
             {% endfor %}
         </table>
+            <div>
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if product.has_previous %}
+                        <a href="?page={{ product.previous_page_number }}">previous</a>
+                        {% endif %}
+            
+                        <span class="current">
+                            Page {{ product.number }} of {{ product.paginator.num_pages }}.
+                        </span>
+            
+                        {% if product.has_next %}
+                        <a href="?page={{ product.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </ul>
     </div>
-
+<!--
     <hr>
     <div>
         <nav class="pagination is-centered" role="navigation" aria-label="pagination">
@@ -76,7 +104,7 @@
         </nav>
     </div>
     <hr>
-
+-->
     <footer id="contact-us" class="footer">
         <div class="content has-text-centered">
             <p>
