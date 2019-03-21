@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_tables2',
     'e_shop'
 ]
 
@@ -127,3 +126,4 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/'
 
 MEDIA_ROOT = '/Users/domihozannou/Dropbox/EcomProject/EcomProject/src'
+#MEDIA_ROOT = '/home/yannick/projects/django_projects/EcomProject/src'
