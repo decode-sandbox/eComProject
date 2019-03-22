@@ -124,6 +124,3 @@ STATIC_URL = '/static/'
 
 # Media files (uploadeds, ...)
 MEDIA_URL = '/'
-
-MEDIA_ROOT = '/Users/domihozannou/Dropbox/EcomProject/EcomProject/src'
-#MEDIA_ROOT = '/home/yannick/projects/django_projects/EcomProject/src'

@@ -24,9 +24,13 @@
                     <a href="contact" class="navbar-item">Contact Us</a>
                 </div>
                 <div class="navbar-end">
-                    <a href="#Account" class="navbar-item "> Account <i class="fas fa-user-circle"></i></a>
+                    <a href="#Account" class="navbar-item ">{{user.username}}<i class="fas fa-user-circle"></i></a>
                     <a href="#cart" class="navbar-item"> <i class="fas fa-shopping-cart"></i></a>
-                </div>
+                    <div class="buttons">
+                        <a href="logout" class="button is-danger">
+                            <strong>Logout</strong>
+                        </a>
+                    </div>
             </div>
             </div>
         </nav>
