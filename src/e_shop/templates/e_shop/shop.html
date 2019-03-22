@@ -1,8 +1,6 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,15 +11,7 @@
     <link rel="icon" href="{% static 'e_shop/e-commerce.png' %}">
     <!--https://use.fontawesome.com/releases/v5.3.1/js/all.js-->
     <script defer src="{% static 'e_shop/fontawesome.all.js' %}"></script>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
 </head>
-
-
 
 <body>
     <header>
@@ -31,9 +21,7 @@
             <div class="navbar-menu">
                 <div class="navbar-start">
                     <a href="home" class="navbar-item">Home</a>
-                </div>
-                <div class="navbar-item">
-                    
+                    <a href="contact" class="navbar-item">Contact Us</a>
                 </div>
                 <div class="navbar-end">
                     <a href="#Account" class="navbar-item "> Account <i class="fas fa-user-circle"></i></a>
@@ -43,7 +31,8 @@
             </div>
         </nav>
     </header>
-  
+
+<!-- Display the search bar and search button-->
     <div class="box has-text-centered">
         <div class="field">
             <div class="control has-icons-right" style="text-align: center;">
@@ -51,8 +40,8 @@
                 <button class="button">Search</button>
             </div>
         </div>
-
-
+        
+<!-- Display all products in a table-->
     <div>
         <table>
             {% for product in all_product %}
@@ -69,6 +58,8 @@
             </td>
             </tr>
             {% endfor %}
+
+<!-- Pagination to display all products in a table-->
         </table>
             <div>
                 <div class="pagination">
@@ -91,21 +82,7 @@
             </div>
         </ul>
     </div>
-<!--
-    <hr>
-    <div>
-        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-            <a class="pagination-previous">Previous</a>
-            <a class="pagination-next">Next page</a>
-            <ul class="pagination-list">
-                <li><a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a></li>
-                <li><a class="pagination-link" aria-label="Goto page 2">2</a></li>
-                <li><a class="pagination-link" aria-label="Goto page 3">3</a></li>
-            </ul>
-        </nav>
-    </div>
-    <hr>
--->
+
     <footer id="contact-us" class="footer">
         <div class="content has-text-centered">
             <p>
@@ -114,5 +91,4 @@
         </div>
     </footer>
 </body>
-
 </html>
