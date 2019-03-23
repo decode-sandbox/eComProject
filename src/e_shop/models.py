@@ -6,7 +6,7 @@ class User(models.Model):
     user = models.OneToOneField(AuthUser, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.user
+        return self.user.username
     
 class Product(models.Model):
     name = models.CharField(max_length=100)
