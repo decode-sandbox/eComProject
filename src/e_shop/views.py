@@ -10,27 +10,32 @@ from django.db import IntegrityError
 
 def home(request):
     p = Product.objects.all()[:4] #take four first products
-    return render(request,'e_shop/home.html',{'products':p})
+    return render(request, 'e_shop/home.html', {'products':p})
 
 @login_required(login_url='/eshop/login')
-def shop(request):
-    pro = Product.objects.all()
-    paginator = Paginator(pro,6)  # Show 6 products per page
-    page = request.GET.get('page')
-    all_product = paginator.get_page(page)
-    context = {'all_product': pro}
-    template = 'e_shop/shop.html'
-    return render(request,template,context)
+def shop(request,page_number=1):
+    products_paginator = None 
+    if 'products_paginator' in request.session:
+        products_paginator = request.session['products_paginator']
+    else:
+        products = Product.objects.all()
+        products_paginator = Paginator(products,4)
+    current_products = list()
+    try:
+        current_products = products_paginator.page(page_number)
+    except:
+        current_products = products_paginator.page(0)
+    return render(request, 'e_shop/shop.html', {'products': current_products})
 
 
 def product(request):
-    return render(request,'e_shop/product.html')
+    return render(request, 'e_shop/product.html')
 
 def cart(request):
-    return render(request,'e_shop/cart.html')
+    return render(request, 'e_shop/cart.html')
 
 def contact(request):
-    return render(request,'e_shop/contact.html')
+    return render(request, 'e_shop/contact.html')
 
 def about(request):
     return render(request, 'e_shop/about.html')

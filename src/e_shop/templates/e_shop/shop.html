@@ -36,55 +36,37 @@
         </nav>
     </header>
 
-<!-- Display the search bar and search button-->
-    <div class="box has-text-centered">
-        <div class="field">
-            <div class="control has-icons-right" style="text-align: center;">
-                <input class="input is-rounded" style="width:18em;" type="text" placeholder="Search">
-                <button class="button">Search</button>
+    <div id="products" class="columns">
+        {% for product in products %}
+            <section class="column section">
+                <p class="title">{{product.name}}</p>
+                <img src="{{product.image_link.url}}" alt="{{product.name}}"/>
+                <ul>
+                  <li><strong>Description</strong>:{{product.description}}</li>
+                  <li><strong>Price</strong>: {{product.price}} FCFA</li> 
+                </ul>
+              </section>
+        {% endfor %}
+    </div>
+
+    <div class="columns">
+        <div class="column"></div>
+        <div class="column">
+            <div class="columns">
+                {% if products.has_previous %}
+                   <a href="{% url 'shop' products.previous_page_number %}"
+                   class="column button is-link">Previous</a>
+                {% endif %}
+                <span class="column current">
+                   <strong>Page {{ products.number }} / {{ products.paginator.num_pages }}</strong>
+                </span>
+                {% if products.has_next %}
+                   <a href="{% url 'shop' products.next_page_number %}"
+                   class="column button is-link">Next</a>
+                {% endif %}
             </div>
         </div>
-        
-<!-- Display all products in a table-->
-    <div>
-        <table>
-            {% for product in all_product %}
-            <tr>
-                <td><section class="column section">
-                    <p class="title">{{product.name}}</p>
-                    <img src="{{product.image_link.url}}" alt="{{product.name}}" height="200px" width="200px"/>
-                    <ul>
-                        <li><strong>Description</strong>:{{product.description}}</li>
-                        <li><strong>Price</strong>: {{product.price}} FCFA</li>
-                        <li><strong>Stock</strong>: {{product.quantity}}</li>
-                    </ul>
-                </section>
-            </td>
-            </tr>
-            {% endfor %}
-
-<!-- Pagination to display all products in a table-->
-        </table>
-            <div>
-                <div class="pagination">
-                    <span class="step-links">
-                        {% if all_product.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ all_product.previous_page_number }}">previous</a>
-                        {% endif %}
-            
-                        <span class="current">
-                            Page {{ all_product.number }} of {{ all_product.paginator.num_pages }}.
-                        </span>
-            
-                        {% if product.has_next %}
-                        <a href="?page={{ all_product.next_page_number }}">next</a>
-                        <a href="?page={{ all_product.paginator.num_pages }}">last &raquo;</a>
-                        {% endif %}
-                    </span>
-                </div>
-            </div>
-        </ul>
+        <div class="column"></div>
     </div>
 
     <footer id="contact-us" class="footer">
