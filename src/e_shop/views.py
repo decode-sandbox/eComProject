@@ -1,4 +1,4 @@
-from e_shop.models import Product, User
+from e_shop.models import Product, User, Purchase
 from django.contrib.auth.models import User as AuthUser
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
@@ -14,25 +14,54 @@ def home(request):
 
 @login_required(login_url='/eshop/login')
 def shop(request,page_number=1):
+    if request.method == "POST": #if the cart is updated
+        form_values = request.POST.dict()
+        product_id = form_values["id"]
+        n = form_values["number_to_purchase"]
+        request.session['cart'][product_id] = int(n)
+        
+    number_of_products_per_page = 4
     products_paginator = None 
     if 'products_paginator' in request.session:
         products_paginator = request.session['products_paginator']
     else:
         products = Product.objects.all()
-        products_paginator = Paginator(products,4)
+        products_paginator = Paginator(products,number_of_products_per_page)
+        #request.session['products_paginator'] = products_paginator
+        if 'cart' not in request.session:
+            request.session['cart'] = dict()
+            for product in products:
+                request.session['cart'][str(product.id)] = 0     
     current_products = list()
     try:
         current_products = products_paginator.page(page_number)
     except:
         current_products = products_paginator.page(0)
-    return render(request, 'e_shop/shop.html', {'products': current_products})
-
-
+    return render(request, 'e_shop/shop.html', {'products': current_products,
+                                                'cart': request.session['cart']})
+    
 def product(request):
     return render(request, 'e_shop/product.html')
 
 def cart(request):
-    return render(request, 'e_shop/cart.html')
+    if request.method == "POST":
+        form_values = request.POST.dict()
+        for key,value in form_values.items():
+            if key != 'csrfmiddlewaretoken':
+                product_id,number = key,int(value)
+                p = Product.objects.get(id=product_id)
+                p.quantity += number
+                p.save()
+                c = User.objects.get(user=request.user)
+                Purchase.objects.create(quantity=number, product=p, client=c)
+                del request.session['cart']
+        return render(request, 'e_shop/bought.html')
+    user_cart = dict()
+    for product_id,number in request.session['cart'].items():
+        if number!=0:
+            user_cart[Product.objects.get(id=product_id).name] = {"number": number,
+                      "id": product_id}
+    return render(request, 'e_shop/cart.html', {'cart': user_cart})
 
 def contact(request):
     return render(request, 'e_shop/contact.html')

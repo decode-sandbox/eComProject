@@ -124,3 +124,5 @@ STATIC_URL = '/static/'
 
 # Media files (uploadeds, ...)
 MEDIA_URL = '/'
+
+SESSION_SAVE_EVERY_REQUEST = True
