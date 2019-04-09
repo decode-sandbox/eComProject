@@ -35,16 +35,8 @@
             </div>
         </nav>
     </header>
-    <form method="post" action="">
-      {% csrf_token %}
-      {% for product_name,param in cart.items %}
-      	{{product_name}}
-      	<input type="number" name="{{param|item:'id'}}" value="{{param|item:'number'}}">
-      {% endfor %}
-      <button type="submit" class="button is-danger">
-        <strong>Buy</strong>
-      </button>
-    </form>
+    {{form_values}}
+    <p>Thank you for choosing to trust our shop to find your satisfaction. We are happy to count you among our customers and hope to see you again very soon!!</p>
     <footer id="contact-us" class="footer">
         <div class="content has-text-centered">
             <p><strong>E-commerce shop</strong> by <a href="#">TeamDelta</a>.</p>
