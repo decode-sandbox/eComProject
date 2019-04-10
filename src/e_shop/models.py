@@ -28,5 +28,4 @@ class Purchase(models.Model):
     client = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f"{self.quantity} {self.product} by {self.client} the" 
-        "{self.date}"
+        return f"{self.quantity} {self.product} by {self.client} the {self.date}"

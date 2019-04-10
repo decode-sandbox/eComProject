@@ -17,15 +17,20 @@
     <header>
        <img src="{% static 'e_shop/e-commerce.png' %}" alt="e-commerce"
         width="70" height="70">
-        <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+        <nav class="navbar is-light" role="navigation"
+        aria-label="main navigation">
             <div class="navbar-menu">
                 <div class="navbar-start">
                     <a href="home" class="navbar-item">Home</a>
                     <a href="contact" class="navbar-item">Contact Us</a>
                 </div>
                 <div class="navbar-end">
-                    <a href="#Account" class="navbar-item ">{{user.username}}<i class="fas fa-user-circle"></i></a>
-                    <a href="{% url 'cart' %}" class="navbar-item"> <i class="fas fa-shopping-cart"></i></a>
+                    <a href="#Account" class="navbar-item ">
+                      {{user.username}}<i class="fas fa-user-circle"></i>
+                    </a>
+                    <a href="{% url 'cart' %}" class="navbar-item">
+                      <i class="fas fa-shopping-cart"></i>
+                    </a>
                     <div class="buttons">
                         <a href="logout" class="button is-danger">
                             <strong>Logout</strong>
@@ -42,41 +47,41 @@
                 <img src="{{product.image_link.url}}" alt="{{product.name}}"/>
                 <ul>
                   <li><strong>Description</strong>:{{product.description}}</li>
-                  <li><strong>Price</strong>: {{product.price}} FCFA</li> 
+                  <li><strong>Price</strong>: {{product.price}} FCFA</li>
+                  <li>
+                    <strong>Number in cart</strong>: {{cart|item:product.id}}
+                  </li>
                 </ul>
                 <form method="post" action="">
                   {% csrf_token %}
-                  <strong>In Cart</strong>
-                  <p>You have {{cart|item:product.id}} {{product.name}} in your cart</p> 
                   <input type="hidden" name="id" value="{{product.id}}"/>
-                  <input type="number" name="number_to_purchase">
-                  <button>Update</button>
+                  <input type="number" name="number_to_purchase" min="0"
+                  max="{{product.quantity}}" class="input is-small" required
+                  placeholder="Number of {{product.name}} in cart">
+                  <button class="button is-light is-small">Update</button>
                 </form>
               </section>
         {% endfor %}
     </div>
-    <div class="columns">
-        <div class="column"></div>
-        <div class="column">
-            <div class="columns">
-                {% if products.has_previous %}
-                   <a href="{% url 'shop' products.previous_page_number %}"
-                   class="column button is-link">Previous</a>
-                {% endif %}
-                <span class="column current">
-                   <strong>Page {{ products.number }} / {{ products.paginator.num_pages }}</strong>
-                </span>
-                {% if products.has_next %}
-                   <a href="{% url 'shop' products.next_page_number %}"
-                   class="column button is-link">Next</a>
-                {% endif %}
-            </div>
-        </div>
-        <div class="column"></div>
+    <div>
+      {% if products.has_previous %}
+         <a href="{% url 'shop' products.previous_page_number %}"
+         class="button is-link">Previous</a>
+      {% endif %}
+      <span class="current">
+         <strong>Page {{ products.number }} / 
+         {{ products.paginator.num_pages }}</strong>
+      </span>
+      {% if products.has_next %}
+         <a href="{% url 'shop' products.next_page_number %}"
+         class="button is-link">Next</a>
+      {% endif %}
     </div>
     <footer id="contact-us" class="footer">
         <div class="content has-text-centered">
-            <p><strong>E-commerce shop</strong> by <a href="#">TeamDelta</a>.</p>
+            <p>
+              <strong>E-commerce shop</strong> by <a href="#">TeamDelta</a>.
+            </p>
         </div>
     </footer>
 </body>

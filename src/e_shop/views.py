@@ -21,17 +21,13 @@ def shop(request,page_number=1):
         request.session['cart'][product_id] = int(n)
         
     number_of_products_per_page = 4
-    products_paginator = None 
-    if 'products_paginator' in request.session:
-        products_paginator = request.session['products_paginator']
-    else:
-        products = Product.objects.all()
-        products_paginator = Paginator(products,number_of_products_per_page)
-        #request.session['products_paginator'] = products_paginator
-        if 'cart' not in request.session:
-            request.session['cart'] = dict()
-            for product in products:
-                request.session['cart'][str(product.id)] = 0     
+    products_paginator = None
+    products = Product.objects.all()
+    products_paginator = Paginator(products,number_of_products_per_page)
+    if 'cart' not in request.session:
+        request.session['cart'] = dict()
+        for product in products:
+            request.session['cart'][str(product.id)] = 0     
     current_products = list()
     try:
         current_products = products_paginator.page(page_number)
@@ -50,17 +46,18 @@ def cart(request):
             if key != 'csrfmiddlewaretoken':
                 product_id,number = key,int(value)
                 p = Product.objects.get(id=product_id)
-                p.quantity += number
+                p.quantity -= number
                 p.save()
                 c = User.objects.get(user=request.user)
                 Purchase.objects.create(quantity=number, product=p, client=c)
-                del request.session['cart']
+        del request.session['cart']
         return render(request, 'e_shop/bought.html')
     user_cart = dict()
     for product_id,number in request.session['cart'].items():
+        product = Product.objects.get(id=product_id)
         if number!=0:
-            user_cart[Product.objects.get(id=product_id).name] = {"number": number,
-                      "id": product_id}
+            user_cart[product.name] = {"number": number, "id": product_id,
+                     "max_number": product.quantity}
     return render(request, 'e_shop/cart.html', {'cart': user_cart})
 
 def contact(request):
@@ -106,4 +103,4 @@ def log_in(request):
     
 def log_out(request):
     logout(request)
-    return redirect(log_in)
+    return redirect(home)

@@ -17,7 +17,8 @@
     <header>
        <img src="{% static 'e_shop/e-commerce.png' %}" alt="e-commerce"
         width="70" height="70">
-        <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+        <nav class="navbar is-light" role="navigation"
+        aria-label="main navigation">
             <div class="navbar-menu">
                 <div class="navbar-start">
                     <a href="home" class="navbar-item">Home</a>
@@ -25,7 +26,9 @@
                     <a href="contact" class="navbar-item">Contact Us</a>
                 </div>
                 <div class="navbar-end">
-                    <a href="#Account" class="navbar-item ">{{user.username}}<i class="fas fa-user-circle"></i></a>
+                    <a href="#Account" class="navbar-item ">
+                        {{user.username}}<i class="fas fa-user-circle"></i>
+                    </a>
                     <div class="buttons">
                         <a href="logout" class="button is-danger">
                             <strong>Logout</strong>
@@ -35,11 +38,16 @@
             </div>
         </nav>
     </header>
-    {{form_values}}
-    <p>Thank you for choosing to trust our shop to find your satisfaction. We are happy to count you among our customers and hope to see you again very soon!!</p>
+    <section class="section">
+      <p class="subtitle">Thank you for choosing to trust our shop to find your
+      satisfaction. We are happy to count you among our customers and hope to
+      see you again very soon!!</p>
+    </section>
     <footer id="contact-us" class="footer">
         <div class="content has-text-centered">
-            <p><strong>E-commerce shop</strong> by <a href="#">TeamDelta</a>.</p>
+            <p>
+              <strong>E-commerce shop</strong> by <a href="#">TeamDelta</a>.
+            </p>
         </div>
     </footer>
 </body>

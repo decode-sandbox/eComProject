@@ -17,7 +17,8 @@
     <header>
        <img src="{% static 'e_shop/e-commerce.png' %}" alt="e-commerce"
         width="70" height="70">
-        <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+        <nav class="navbar is-light" role="navigation"
+        aria-label="main navigation">
             <div class="navbar-menu">
                 <div class="navbar-start">
                     <a href="home" class="navbar-item">Home</a>
@@ -25,7 +26,9 @@
                     <a href="contact" class="navbar-item">Contact Us</a>
                 </div>
                 <div class="navbar-end">
-                    <a href="#Account" class="navbar-item ">{{user.username}}<i class="fas fa-user-circle"></i></a>
+                    <a href="#Account" class="navbar-item">
+                        {{user.username}}<i class="fas fa-user-circle"></i>
+                    </a>
                     <div class="buttons">
                         <a href="logout" class="button is-danger">
                             <strong>Logout</strong>
@@ -35,19 +38,40 @@
             </div>
         </nav>
     </header>
-    <form method="post" action="">
-      {% csrf_token %}
-      {% for product_name,param in cart.items %}
-      	{{product_name}}
-      	<input type="number" name="{{param|item:'id'}}" value="{{param|item:'number'}}">
-      {% endfor %}
-      <button type="submit" class="button is-danger">
-        <strong>Buy</strong>
-      </button>
-    </form>
+    <div class="columns">
+      <div class="column"></div>
+      <form method="post" action="" class="column">
+        {% csrf_token %}
+        {% if cart|length_is:"0" %}
+          <section class="section">
+            <p class="subtitle">
+              You don't have any product in your cart yet!!
+            </p>
+          </section>
+        {% else %}
+          {% for product_name,param in cart.items %}
+            <div class="field">
+                <label for="{{param|item:'id'}}" class="label">
+                    {{product_name}} : 
+                </label>
+                <input type="number" id="{{param|item:'id'}}"
+                name="{{param|item:'id'}}" value="{{param|item:'number'}}"
+                min="0" max="{{param|item:'max_number'}}"
+                class="input is-small" required>
+            </div>
+          {% endfor %}
+          <button type="submit" class="button is-danger">
+            <strong>Buy</strong>
+          </button>
+        {% endif %}
+      </form>
+      <div class="column"></div>
+    </div>
     <footer id="contact-us" class="footer">
         <div class="content has-text-centered">
-            <p><strong>E-commerce shop</strong> by <a href="#">TeamDelta</a>.</p>
+            <p>
+                <strong>E-commerce shop</strong> by <a href="#">TeamDelta</a>.
+            </p>
         </div>
     </footer>
 </body>
