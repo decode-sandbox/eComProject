@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 
 # Here are our views.
+def root(request):
+    return redirect(home)
 
 def home(request):
     p = Product.objects.all()[:4] #take four first products
