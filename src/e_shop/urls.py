@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -11,5 +11,6 @@ urlpatterns = [
     path('contact', views.contact),
     path('register', views.register),
     path('login', views.log_in),
-    path('logout', views.log_out)
+    path('logout', views.log_out),
+    path('accounts/', include('django.contrib.auth.urls'))
 ]

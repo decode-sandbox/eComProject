@@ -16,3 +16,6 @@ To administrate the app, go to the address:
 * `localhost:8000/admin`
 
 You can log in with (**username**: yannick, **password**: teamdelta).
+
+Plase, open an issue if you encounter a problem or have ideas for improving
+the application

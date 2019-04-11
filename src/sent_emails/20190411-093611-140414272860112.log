@@ -1,0 +1,26 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: seyive.kiki@gmail.com
+Date: Thu, 11 Apr 2019 09:36:11 -0000
+Message-ID: 
+ <155497537106.10541.42974049095701783@yannick-HP-250-G4-Notebook-PC>
+
+
+You're receiving this email because you requested a password reset for your user account at localhost:8000.
+
+Please go to the following page and choose a new password:
+
+http://localhost:8000/eshop/accounts/reset/MQ/55e-6078daea929c016a9d09/
+
+Your username, in case you've forgotten: yannick
+
+Thanks for using our site!
+
+The localhost:8000 team
+
+
+
+-------------------------------------------------------------------------------

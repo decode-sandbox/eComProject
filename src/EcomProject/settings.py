@@ -126,3 +126,6 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/'
 
 SESSION_SAVE_EVERY_REQUEST = True
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
