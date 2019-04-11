@@ -11,6 +11,18 @@
     <link rel="icon" href="{% static 'e_shop/e-commerce.png' %}">
     <!--https://use.fontawesome.com/releases/v5.3.1/js/all.js-->
     <script defer src="{% static 'e_shop/fontawesome.all.js' %}"></script>
+    <script src="{% static 'e_shop/jquery3.3.1.min.js' %}"></script>
+    <script>
+      $(document).ready(function(){
+        $("input").change(function(){
+          let amount = 0
+          $('.product_price').each(function () {
+            amount += parseInt($(this).val())*parseInt($(this).attr("price"))
+          });
+          $("#total").val(amount)
+        });
+      });
+    </script>
 </head>
 
 <body>
@@ -26,7 +38,7 @@
                     <a href="contact" class="navbar-item">Contact Us</a>
                 </div>
                 <div class="navbar-end">
-                    <a href="#Account" class="navbar-item">
+                    <a href="#account" class="navbar-item">
                         {{user.username}}<i class="fas fa-user-circle"></i>
                     </a>
                     <div class="buttons">
@@ -52,14 +64,21 @@
           {% for product_name,param in cart.items %}
             <div class="field">
                 <label for="{{param|item:'id'}}" class="label">
-                    {{product_name}} : 
+                    {{product_name}} ({{param|item:'price'}} FCFA): 
                 </label>
                 <input type="number" id="{{param|item:'id'}}"
                 name="{{param|item:'id'}}" value="{{param|item:'number'}}"
                 min="0" max="{{param|item:'max_number'}}"
-                class="input is-small" required>
+                class="input is-small product_price" required
+                price="{{param|item:'price'}}">
             </div>
           {% endfor %}
+          <label for="total" class="label">
+            Total (FCFA):
+          </label>
+          <input type="number" id="total" name="total" value="{{amount}}"
+          class="input is-small" disabled>
+          <br><br>
           <button type="submit" class="button is-danger">
             <strong>Buy</strong>
           </button>

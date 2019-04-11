@@ -52,15 +52,21 @@ def cart(request):
                 p.save()
                 c = User.objects.get(user=request.user)
                 Purchase.objects.create(quantity=number, product=p, client=c)
-        del request.session['cart']
+        try:
+            del request.session['cart']
+        except KeyError:
+            pass
         return render(request, 'e_shop/bought.html')
     user_cart = dict()
+    amount = 0
     for product_id,number in request.session['cart'].items():
         product = Product.objects.get(id=product_id)
         if number!=0:
             user_cart[product.name] = {"number": number, "id": product_id,
-                     "max_number": product.quantity}
-    return render(request, 'e_shop/cart.html', {'cart': user_cart})
+                     "max_number": product.quantity, "price": product.price}
+            amount += number*product.price
+    return render(request, 'e_shop/cart.html', {'cart': user_cart,
+                                                'amount' : amount})
 
 def contact(request):
     return render(request, 'e_shop/contact.html')
